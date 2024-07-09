@@ -1,25 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import { useQuery } from '@apollo/client';
+import { Token } from './queries/Token';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  const { loading, error, data } = useQuery(Token);
+
+  if (loading) return "Loading";
+  if (error) return `Error! ${error.message}`;
+
+  console.log(data)
+
+    return (
+      <div>
+      <h1>Data</h1>
+      </div>
+    );
+  };
 
 export default App;
